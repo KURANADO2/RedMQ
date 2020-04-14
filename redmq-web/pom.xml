@@ -45,8 +45,8 @@
 				<db.user></db.user>
 				<db.password></db.password>
 
-				<logger.base>/opt/nodeProject/logs</logger.base>
-				<logger.level>info</logger.level>
+				<logger.base>/data/logs/redmq</logger.base>
+				<logger.level>debug</logger.level>
 			</properties>
 		</profile>
 	</profiles>

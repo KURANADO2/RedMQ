@@ -46,7 +46,7 @@ public class JedisClient {
 				config = new PropertiesConfiguration(file);
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			logger.info(e.getMessage(), e);
 			return;
 		}
 		try {
@@ -57,13 +57,13 @@ public class JedisClient {
 
 			String server = config.getString("redis.server").split(":")[0];
 			String port = config.getString("redis.server").split(":")[1];
-
+			String password = config.getString("redis.requirepass");
 			JedisPoolConfig poolConfig = new JedisPoolConfig();
 			poolConfig.setMaxIdle(maxIdle);
 			poolConfig.setMaxTotal(maxTotal);
 			poolConfig.setMaxWaitMillis(maxWait);
 
-			pool = new JedisPool(poolConfig, server, Integer.valueOf(port), timeout);
+			pool = new JedisPool(poolConfig, server, Integer.parseInt(port), timeout, password);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
